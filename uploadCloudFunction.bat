@@ -1,0 +1,1 @@
+"D:\code\微信web开发者工具\cli.bat" cloud functions deploy --e test-3gebsuyhddb976e3 --n quickstartFunctions --r --project "D:\code\project\pomodoroTimer" --report_first && "D:\code\微信web开发者工具\cli.bat" cloud functions deploy --e dev-6gcv5zfsa60ac668 --n quickstartFunctions --r --project "D:\code\project\pomodoroTimer" --report
