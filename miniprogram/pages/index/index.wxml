@@ -37,7 +37,7 @@
 
     <view class="btnBox">
       <block wx:if="{{!isStopTimer}}">
-        <button class="time_btn" style="width: 200rpx;" bindtap="stop">暂停</button>
+        <button class="time_btn" style="width: 200rpx;" bindtap="stop">{{btnValue}}</button>
       </block>
       <block wx:else>
         <button class="time_btn" style="width: 200rpx;" bindtap="go">继续</button>

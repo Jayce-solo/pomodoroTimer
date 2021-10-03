@@ -1,4 +1,5 @@
 // pages/index/index.js
+const util = require('../../utils/util.js')
 Page({
 
   /**
@@ -38,7 +39,8 @@ Page({
     cTime: 0,
     timeStr: '',
     isStopTimer: false,
-    interval: null
+    interval: null,
+    btnValue: "暂停"
   },
 
   //slider改变监听方法
@@ -82,10 +84,10 @@ Page({
 
   //定时绘制
   drawTimeActiveRoad() {
-
-    this.drawTimerBg();
+    //TODO: 这里面的drawTimerBg()最好执行一次即可
+    // this.drawTimerBg();
     let interval = setInterval(() => {
-      if (this.data.cTime < this.data.time * 60 * 1000) {
+      if (this.data.cTime <= this.data.time * 60 * 1000) {
         //整秒数
         if (this.data.cTime % 1000 == 0) {
           let timeStr = this.data.time * 60 - this.data.cTime / 1000;
@@ -95,12 +97,23 @@ Page({
             timeStr: (mintue >= 10 ? mintue : '0' + mintue) + ':' + second
           })
         }
+        this.drawTimerBg();
         this.drawTimeActive();
         this.setData({ cTime: this.data.cTime + 100 })
-      } else {
+      } else { //计时完成
+        //保存完成的记录
         this.setData({
-          timeStr: '00:00'
+          timeStr: '00:00',
+          btnValue: "返回"
+        });
+        let logs = wx.getStorageSync('logs')||[];
+        logs.unshift({
+          date: util.formatTime(new Date()),
+          cate: this.data.task[this.data.taskActive].name,
+          time: this.data.time
         })
+        console.log(logs);
+        wx.setStorageSync('logs', logs);
         clearInterval(interval);
       }
     }, 100);
@@ -123,8 +136,12 @@ Page({
 
   //暂停
   stop() {
-    this.setData({ isStopTimer: true });
-    clearInterval(this.data.interval);
+    if (this.data.btnValue == "暂停") {
+      this.setData({ isStopTimer: true });
+      clearInterval(this.data.interval);
+    } else {
+      this.giveUp();
+    }
   },
 
   //继续
@@ -140,7 +157,8 @@ Page({
       isStopTimer: false,
       time: 25,
       isShowTimer: false,
-      cTime: 0
+      cTime: 0,
+      btnValue: "暂停"
     });
   },
 
