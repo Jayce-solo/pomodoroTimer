@@ -1,2 +1,48 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<block wx:if="{{!isShowTimer}}">
+  <view class="container">
+    <view class="slider">
+      <slider min="1" value="{{time}}" max="60" backgroundColor="#666666" show-value activeColor="#E6624F"
+        bindchange="sliderChange"></slider>
+    </view>
+
+    <view class="task_title">
+      <view class="title">
+        选择NI喜欢的[模式]
+      </view>
+      <view class="slogan">
+        在接下来的{{time}}分钟内，你会专注做这件事，加油！
+      </view>
+    </view>
+
+    <view class="task_body">
+      <view class="task" wx:for="{{task}}" wx:key="index" bindtap="clickTask" data-index="{{index}}">
+        <image src="../../images/{{item.icon}}.png" mode="widthFix"></image>
+        <text class="{{taskActive == index?'active':''}}">{{item.name}}</text>
+      </view>
+    </view>
+
+    <view class="start">
+      <button bindtap="start">开始专注</button>
+    </view>
+  </view>
+</block>
+
+<block wx:else>
+  <view class="timerPage" style="height: {{timerHeight}}rpx;">
+    <view class="timer_body">
+      <canvas canvas-id="timerCanvas_bg" class="timerCanvas_bg"></canvas>
+      <canvas canvas-id="timerCanvas_active" class="timerCanvas_active"></canvas>
+      <view class="progress_text">{{timeStr}}</view>
+    </view>
+
+    <view class="btnBox">
+      <block wx:if="{{!isStopTimer}}">
+        <button class="time_btn" style="width: 200rpx;" bindtap="stop">暂停</button>
+      </block>
+      <block wx:else>
+        <button class="time_btn" style="width: 200rpx;" bindtap="go">继续</button>
+        <button class="time_btn" style="width: 200rpx;" bindtap="giveUp">放弃</button>
+      </block>
+    </view>
+  </view>
+</block>

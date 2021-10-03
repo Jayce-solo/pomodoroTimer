@@ -1,0 +1,118 @@
+/* pages/index/index.wxss */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 20rpx;
+}
+
+.slider {
+  width: 80%;
+  margin: 50rpx 0;
+}
+
+/* 任务标题 */
+.task_title {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.task_title .title {
+  font-size: 35rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-weight: bolder;
+}
+
+.task_title .slogan {
+  font-size: 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  color: silver;
+}
+
+/* 任务内容 */
+.task_body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.task_body .task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200rpx;
+  margin-bottom: 50rpx;
+}
+
+.task_body .task image {
+  width: 80rpx;
+}
+
+.task_body .task text {
+  font-size: 30rpx;
+}
+
+.active {
+  color: #FF6347;
+  font-weight: bold;
+}
+
+.start {
+  margin-top: 30rpx;
+}
+
+.start button {
+  color: #FF6347;
+}
+
+.timerPage {
+  background-color: #FF6347;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* 显示倒计时 */
+.timerPage .timer_body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400rpx;
+  height: 400rpx;
+  margin-top: 130rpx;
+  position: relative;
+}
+
+.timerCanvas_bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.timerCanvas_active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.progress_text {
+  position: absolute;
+  top: 200rpx;
+  font-size: 66rpx;
+  font-weight: bold;
+  color: #FFF;
+}
+
+.time_btn {
+  color: #FF6347;
+  margin: 36rpx 0;
+}
